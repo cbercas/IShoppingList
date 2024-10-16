@@ -14,6 +14,8 @@ public class Product implements Serializable {
     private String name;
     private String note;
     private boolean isPending;
+    private boolean lactosa;
+    private boolean gluten;
 
     /**
      * Constructor por defecto.
@@ -31,11 +33,13 @@ public class Product implements Serializable {
      * @param note  String     Nota relacionada con el producto
      * @param isPending boolean Indica si el producto está pendiente de ser comprado
      */
-    public Product (int id, String name, String note, boolean isPending) {
+    public Product (int id, String name, String note, boolean isPending, boolean lactosa, boolean gluten) {
         this.id =id;
         this.name = name;
         this.note = note;
         this.isPending = isPending;
+        this.lactosa = lactosa;
+        this.gluten = gluten;
     }
 
     /**
@@ -46,10 +50,12 @@ public class Product implements Serializable {
      * @param note    String   Nota relacionada con el producto
      * @param isPending boolean Indica si el producto está pendiente de ser comprado
      */
-    public Product (String name, String note, boolean isPending) {
+    public Product (String name, String note, boolean isPending,boolean lactosa, boolean gluten) {
         this.name = name;
         this.note = note;
         this.isPending = isPending;
+        this.lactosa = lactosa;
+        this.gluten = gluten;
     }
 
 
@@ -86,7 +92,24 @@ public class Product implements Serializable {
         isPending = pending;
     }
 
+    public boolean isLactosa() {
+        return lactosa;
+    }
+
+    public void setLactosa(boolean lactosa) {
+        this.lactosa = lactosa;
+    }
+
+    public boolean isGluten() {
+        return gluten;
+    }
+
+    public void setGluten(boolean gluten) {
+        this.gluten = gluten;
+    }
+
     // método toString
+
     @Override
     public String toString() {
         return "Product{" +
@@ -94,6 +117,8 @@ public class Product implements Serializable {
                 ", name='" + name + '\'' +
                 ", note='" + note + '\'' +
                 ", isPending=" + isPending +
+                ", lactosa=" + lactosa +
+                ", gluten=" + gluten +
                 '}';
     }
 }

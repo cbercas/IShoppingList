@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
 import com.example.ishoppinglist.R;
 import com.example.ishoppinglist.models.Product;
 import java.util.List;
@@ -18,6 +20,9 @@ import java.util.List;
  * @author Cristina
  */
 public class ProductAdapter extends ArrayAdapter<Product> {
+
+
+    private Context context;
 
     /**
      * Constructor del adaptador.
@@ -45,7 +50,18 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.name_product, parent, false);
         }
 
-        // Obtenemos las referencias a las vistas que vamos a modificar (nombre y nota del producto)
+        TextView productNameTextView = convertView.findViewById(R.id.tvProductNameVisual);
+
+        productNameTextView.setText(product.getName());
+
+        if (product.isLactosa() && product.isGluten()) {
+           convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.azul));
+        } else if (product.isLactosa()) {
+            convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.rosa));
+        } else if (product.isGluten()) {
+            convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.gris));
+        }
+
         TextView tvProductNameVisual = convertView.findViewById(R.id.tvProductNameVisual);
 
         // Asignamos los valores a las vistas
@@ -54,6 +70,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         }
         // Devolvemos la vista modificada
         return convertView;
+
     }
 
 }

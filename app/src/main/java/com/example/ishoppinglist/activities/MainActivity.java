@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView lvProducts;  // El ListView donde se mostrarán los productos
     ProductAdapter adapter; // Adaptador personalizado para los productos
-
+    Spinner spinnerMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        spinnerMain = findViewById(R.id.spinnerMain);
+
+        setupSpinnerBasic(spinnerMain);
+
         // Inicializamos el ListView
         lvProducts = findViewById(R.id.lvProduct);
 
@@ -100,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     /**
      * Se llama cuando la actividad vuelve a estar activa (por ejemplo, después de volver de otra actividad).
      * Aquí se actualiza la lista de productos.
@@ -118,5 +126,15 @@ public class MainActivity extends AppCompatActivity {
         // Actualiza el adaptador con la lista de productos pendientes
         adapter.notifyDataSetChanged();
     }
+
+
+    private void setupSpinnerBasic(Spinner spinnerMain) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.SpinnerMain, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerMain.setAdapter(adapter);
+    }
+
+
 
 }

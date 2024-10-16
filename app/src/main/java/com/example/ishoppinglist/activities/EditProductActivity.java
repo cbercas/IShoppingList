@@ -22,7 +22,7 @@ public class EditProductActivity extends AppCompatActivity {
     private EditText etProductName, etProductNote;
     private Button btnSaveProduct, btnCancel;
     private Product product;
-    private Switch etProductPending;
+    private Switch etProductPending, switchLactosaEdit, switchGlutenEdit;
     private TextView tvProductId;
 
     /**
@@ -41,6 +41,8 @@ public class EditProductActivity extends AppCompatActivity {
         etProductName = findViewById(R.id.etProductName);
         etProductNote = findViewById(R.id.etProductNote);
         etProductPending = findViewById(R.id.switch2);
+        switchLactosaEdit = findViewById(R.id.switchLactosaEdit);
+        switchGlutenEdit = findViewById(R.id.switchGlutenEdit);
         btnSaveProduct = findViewById(R.id.btnSaveProduct);
         btnCancel = findViewById(R.id.btnCancel);
 
@@ -78,6 +80,8 @@ public class EditProductActivity extends AppCompatActivity {
             etProductName.setText(product.getName());
             etProductNote.setText(product.getNote());
             etProductPending.setChecked(product.isPending());
+            switchGlutenEdit.setChecked(product.isGluten());
+            switchLactosaEdit.setChecked(product.isLactosa());
         }
     }
 
@@ -90,6 +94,8 @@ public class EditProductActivity extends AppCompatActivity {
         String name = etProductName.getText().toString().trim();
         String note = etProductNote.getText().toString().trim();
         Boolean pending = etProductPending.isChecked();
+        Boolean lactosa = switchLactosaEdit.isChecked();
+        Boolean gluten = switchGlutenEdit.isChecked();
 
         // Validación
         if (name.isEmpty() || note.isEmpty()) {
@@ -101,6 +107,8 @@ public class EditProductActivity extends AppCompatActivity {
         product.setName(name);
         product.setNote(note);
         product.setPending(pending);
+        product.setLactosa(lactosa);
+        product.setGluten(gluten);
 
         // Actualizar el producto en la base de datos
         Database.updateProduct(product);

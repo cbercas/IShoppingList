@@ -26,6 +26,15 @@
             android:textSize="24sp"
             android:textStyle="bold"/>
 
+        <!-- Spinner para seleccionar tipo producto -->
+        <Spinner
+            android:id="@+id/spinnerMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            android:textColor="@android:color/black" />
+
         <!-- ListView para los productos -->
         <ListView
             android:id="@+id/lvProduct"

@@ -69,6 +69,30 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <!-- Lactosa (tiene o no) -->
+        <Switch
+            android:id="@+id/switchLactosaEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            android:text="Lactosa"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Gluten (tiene o no) -->
+        <Switch
+            android:id="@+id/switchGlutenEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            android:text="Gluten"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <!-- Espacio vacío para empujar los botones hacia abajo -->
         <View
             android:layout_width="match_parent"

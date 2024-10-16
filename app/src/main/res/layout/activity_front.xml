@@ -15,7 +15,9 @@
         android:layout_height="match_parent"
         android:gravity="bottom|center_horizontal"
         android:orientation="vertical"
-        android:paddingBottom="32dp">
+        android:paddingBottom="32dp"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <!-- Botón de inicio -->
         <Button
@@ -24,10 +26,10 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/cardview_dark_background"
             android:padding="16dp"
-            android:textColor="@android:color/white"
             android:text="Start shopping"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 

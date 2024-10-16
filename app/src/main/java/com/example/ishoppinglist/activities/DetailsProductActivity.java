@@ -24,10 +24,11 @@ public class DetailsProductActivity extends AppCompatActivity {
     // Campos de la interfaz de usuario
     private Product product;
     private TextView tvProductName, tvProductNote, tvProductId;
-    private Switch switch1;
+    private Switch switch1, switchLactosaDetails, switchGlutenDetails;
     Button btnBackDetailProduct, btnEditProduct;
     Intent intentDetail;
     Adapter adapter = null;
+
 
     /**
      * Método llamado cuando la actividad es creada por primera vez.
@@ -48,6 +49,8 @@ public class DetailsProductActivity extends AppCompatActivity {
         tvProductNote = findViewById(R.id.tvProductNote);
         tvProductId = findViewById(R.id.tvProductDetailsId);
         switch1 = findViewById(R.id.switch1);
+        switchLactosaDetails = findViewById(R.id.switchLactosaDetails);
+        switchGlutenDetails = findViewById(R.id.switchGlutenDetails);
 
         // Mostrar los detalles del producto
         if (product != null) {
@@ -55,50 +58,55 @@ public class DetailsProductActivity extends AppCompatActivity {
             tvProductNote.setText(product.getNote());
             tvProductId.setText("ID: " + product.getId());
             switch1.setChecked(product.isPending());
+            switchLactosaDetails.setChecked(product.isLactosa());
+            switchGlutenDetails.setChecked(product.isGluten());
+
+
+            // Mostrar los detalles del producto
+            displayProductDetails(product);
+
+            // Listener para detectar cambios en el switch y actualizar el estado del producto
+            switch1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                product.setPending(isChecked); // Actualizar el estado de pendiente
+                if (!isChecked) {
+                    Database.deleteProductPendingList(product);
+                } else {
+                    Database.addProductToPendingList(product);
+                }
+            });
+
+
+            // Botón para volver a la actividad principal
+            btnBackDetailProduct = findViewById(R.id.btnBackDetailProduct);
+            btnBackDetailProduct.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentDetail = new Intent(DetailsProductActivity.this, MainActivity.class);
+                    // Método para abrir otra activity
+                    startActivity(intentDetail);
+                }
+            });
+
+            // Botón para editar el producto
+            btnEditProduct = findViewById(R.id.btnEditProduct);
+            btnEditProduct.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentDetail = new Intent(DetailsProductActivity.this, EditProductActivity.class);
+                    intentDetail.putExtra("product", product); // Pasamos el producto a la nueva actividad
+                    startActivity(intentDetail); // Iniciamos la actividad de detalles
+
+                }
+            });
+
         }
 
-        // Mostrar los detalles del producto
-        displayProductDetails(product);
-
-        // Listener para detectar cambios en el switch y actualizar el estado del producto
-        switch1.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            product.setPending(isChecked); // Actualizar el estado de pendiente
-            if (!isChecked) {
-                Database.deleteProductPendingList(product);
-            } else {
-                Database.addProductToPendingList(product);
-            }
-        });
-
-        // Botón para volver a la actividad principal
-        btnBackDetailProduct = findViewById(R.id.btnBackDetailProduct);
-        btnBackDetailProduct.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentDetail = new Intent(DetailsProductActivity.this, MainActivity.class);
-                // Método para abrir otra activity
-                startActivity(intentDetail);
-            }
-        });
-
-        // Botón para editar el producto
-        btnEditProduct = findViewById(R.id.btnEditProduct);
-        btnEditProduct.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentDetail = new Intent(DetailsProductActivity.this, EditProductActivity.class);
-                intentDetail.putExtra("product", product); // Pasamos el producto a la nueva actividad
-                startActivity(intentDetail); // Iniciamos la actividad de detalles
-
-            }
-        });
 
     }
-
     /**
      * Método llamado cuando la actividad es reanudada.
      * Actualiza el producto si ha sido modificado en la actividad de edición.
      */
-    @Override
-    protected void onResume() {
+
+    protected void onResume () {
         super.onResume();
         for (Product productAux : Database.productListPending) {
             if (productAux.getId() == product.getId()) {
@@ -115,15 +123,16 @@ public class DetailsProductActivity extends AppCompatActivity {
      *
      * @param product El producto cuyos detalles serán mostrados.
      */
-    private void displayProductDetails(Product product) {
+    private void displayProductDetails (Product product) {
         if (tvProductName != null && product != null) {
             tvProductName.setText(product.getName());
             tvProductNote.setText(product.getNote());
             tvProductId.setText("ID: " + product.getId());
             switch1.setChecked(product.isPending());
+            switchLactosaDetails.setChecked(product.isLactosa());
+            switchGlutenDetails.setChecked(product.isGluten());
         } else {
             Log.e("DetailsProductActivity", "Product is null.");
         }
     }
-
 }

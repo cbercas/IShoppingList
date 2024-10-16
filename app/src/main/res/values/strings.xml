@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">IShoppingList</string>
+
+    <string-array name="SpinnerMain">
+        <item>Lactosa</item>
+        <item>TODOS</item>
+        <item>Sin gluten</item>
+    </string-array>
+
 </resources>

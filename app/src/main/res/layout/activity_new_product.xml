@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="10dp"
-            android:text="Product Name"
+            android:hint="Product Name"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="10dp"
-            android:text="Product Note"
+            android:hint="Product Note"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -44,6 +44,30 @@
             android:layout_marginTop="16dp"
             android:padding="10dp"
             android:text="Pending"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Estado del producto (pendiente o completado) -->
+        <Switch
+            android:id="@+id/switchLactosa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            android:text="Lactosa"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Estado del producto (pendiente o completado) -->
+        <Switch
+            android:id="@+id/switchGluten"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            android:text="Gluten"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
             android:textStyle="bold" />

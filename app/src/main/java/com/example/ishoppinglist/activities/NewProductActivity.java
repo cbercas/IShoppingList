@@ -24,6 +24,8 @@ public class NewProductActivity extends AppCompatActivity {
     private Switch switchPending;
     private Button btnAddProduct;
     private Button btnBackNewProduct;
+    private Switch switchLactosa;
+    private Switch switchGluten;
 
     /**
      * Método que se ejecuta cuando se crea la actividad. Inicializa la interfaz de usuario
@@ -42,6 +44,8 @@ public class NewProductActivity extends AppCompatActivity {
         switchPending = findViewById(R.id.switch3);
         btnAddProduct = findViewById(R.id.btnAddNewProduct);
         btnBackNewProduct = findViewById(R.id.btnBackNewProduct);
+        switchLactosa = findViewById(R.id.switchLactosa);
+        switchGluten = findViewById(R.id.switchGluten);
 
         /**
          * Configura el evento del botón para volver a la actividad principal.
@@ -68,6 +72,8 @@ public class NewProductActivity extends AppCompatActivity {
                 String productName = etProductName.getText().toString().trim();
                 String productNote = etProductNote.getText().toString().trim();
                 boolean isPending = switchPending.isChecked();
+                boolean isLactosa = switchLactosa.isChecked();
+                boolean isGluten = switchGluten.isChecked();
 
                 // Validar los datos de entrada
                 if (productName.isEmpty()) {
@@ -76,7 +82,7 @@ public class NewProductActivity extends AppCompatActivity {
                 }
 
                 // Crear un nuevo producto y añadirlo a la base de datos
-                Product newProduct = new Product(productName, productNote, isPending);
+                Product newProduct = new Product(productName, productNote, isPending, isLactosa,isGluten);
                 newProduct.setId(Database.productList.size()+1);// Asignar un ID basado en el tamaño actual de la lista
                 Boolean isAddedToProductList = Database.addProductToProductList(newProduct); // Añadir el producto a la lista de productos
 
